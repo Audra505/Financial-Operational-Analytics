@@ -16,7 +16,7 @@ The project demonstrates the ability to:
 
 ## Business Context
 
-The organization operates across multiple countries and internal departments (e.g., Sales, Legal, Accounting, Engineering, and Operations). It **tracks internal financial activity using transaction-level records rather than consumer sales data.**
+The organization operates **across multiple countries and internal departments** (e.g., Sales, Legal, Accounting, Engineering, and Operations). It **tracks internal financial activity using transaction-level records rather than consumer sales data.**
 
 ## Business Objective
 
@@ -104,4 +104,4 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 
 # Related Resources
 
-- Technical Implementation: Detailed ETL and data modeling documentation
+- **Technical Implementation:** Detailed ETL and data modeling documentation
