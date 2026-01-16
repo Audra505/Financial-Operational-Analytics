@@ -6,6 +6,9 @@ This document details the **technical design and implementation of the end-to-en
 
 The implementation intentionally mirrors analytics environments by separating data ingestion, cleansing, modeling, and reporting into clearly defined layers.
 
+
+## Architecture Overview
+
 **End-to-End Flow:**
 
 ```text
@@ -41,8 +44,6 @@ _CSV Reader_
 - No transformations are applied at ingestion
 - Raw values are preserved to support traceability and auditing
 
---
-
 ## Preprocessing & Field Standardization
 _Expression node + String Manipulation node_
 
@@ -52,5 +53,44 @@ _Expression node + String Manipulation node_
 
 This approach separates **raw ingestion from cleaned representations,** supporting auditability.
 
+## Product Standardization (Fuzzy Matching)
+_Similarity Search node_
+
+**Design choice:** Real-world product names contain typos and formatting inconsistencies
+
+**Configuration**
+- Distance metric: Levenshtein (normalized)
+- Neighbor selection: Nearest match
+- Neighbor count: 1
+
+**Outcome:**
+•	High-confidence matches replaced with reference values
+•	Low-confidence matches preserved to avoid false positives
+
+## Data Type Normalization
+_String to Date&Time node_
+- Date fields are explicitly converted to proper date/time data types.
+- Prevents casting issues in downstream systems.
+- Ensures compatibility with PostgreSQL and BI tools
+
+## Data Quality Classification
+_Rule Engine_
+
+Validation rules include:
+- Missing or invalid cost values
+- Negative revenue
+- Invalid unit counts
+
+Rather than dropping data, records are classified and flagged enabling auditability and downstream QA.
+
+## Parallel Quality Branches
+_Rule-based filters + GroupBy_
+
+Parallel branches are used to:
+- Segment valid vs. exception records
+- Enable optional aggregation and audit outputs
+- Support quality review without disrupting the main pipeline
+
+This design supports both operational analytics and data quality monitoring.
 
 
