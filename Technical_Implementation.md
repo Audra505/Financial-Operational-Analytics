@@ -4,7 +4,7 @@ _End-to-End Financial & Operational Analytics Pipeline_
 # Purpose
 This document details the **technical design and implementation of the end-to-end analytics pipeline,** covering ETL processing, PostgreSQL data modeling, and architectural decisions. It is intended to demonstrate real-world analytics engineering practices, including data quality handling, layered architecture, and BI-ready modeling.
 
-The implementation intentionally mirrors analytics environments by separating data ingestion, cleansing, modeling, and reporting into clearly defined layers.
+The implementation intentionally **mirrors analytics environments by separating data ingestion, cleansing, modeling, and reporting into clearly defined layers.**
 
 ---
 # Architecture Overview
@@ -82,17 +82,17 @@ Validation rules include:
 - Negative revenue
 - Invalid unit counts
 
-Rather than dropping data, records are classified and flagged enabling auditability and downstream QA.
+Rather than dropping data, **records are classified and flagged enabling auditability and downstream QA.**
 
 ## Parallel Quality Branches
-_Rule-based filters + GroupBy_
+_Rule-based filters + GroupBy node_
 
 Parallel branches are used to:
 - Segment valid vs. exception records
 - Enable optional aggregation and audit outputs
 - Support quality review without disrupting the main pipeline
 
-This design supports both operational analytics and data quality monitoring.
+This design supports both **operational analytics and data quality monitoring.**
 
 ## Final Staging Shape
 _Column Filter_ 
@@ -105,11 +105,54 @@ Design principle:
 _DB Connector + Writer_
 
 - Data is written using a dedicated ETL database user.
-- Writes are restricted to approved schemas.
+- Write access is restricted to approved schemas.
 - Deterministic table creation behavior is enforced.
 
 Target Table:
-- staging.transactions_clean
+`staging.transactions_clean`
 
-This establishes a clear contract between ETL logic and storage.
+This establishes a **clear contract between ETL logic and storage.**
+
+# Database & Schema Design
+The PostgreSQL database is structured to simulate a production analytics environment.
+
+## Schema Layers
+| Schema | Purpose |
+|--------|--------------|
+| `staging` | Clean transactional (ETL outputs) |
+| `ref` | Reference and lookup tables |
+| `mart` | Analytics & reporting layer (facts and dimensions) |
+
+A dedicated ETL user is granted schema-scoped permissions, **reinforcing separation of duties and security best practices.**
+
+**View the Schema and permissions setup** (here)
+
+## Data Modeling (Star Schema)
+The modeling phase transforms clean transactional data into an analytics-optimized star schema that supports:
+
+- Efficient querying
+- BI tools (Power BI)
+- Scalable aggregation
+- Clear fact/dimension separation
+
+**All modeling is derived from: `staging.transactions_clean`**
+
+No transformations are performed directly on raw CSVs at this stage.
+
+## Star Schema Design
+A star schema was selected due to:
+
+- Simple, predictable joins
+- BI tool compatibility
+- Read-optimized performance
+- Industry-standard dimensional modeling practices
+
+### Dimension Tables
+Each dimension:
+
+- Represents a single business entity
+- Uses a surrogate key (`SERIAL`)
+- Contains one row per unique value
+
+Dimensions implemented:
 
