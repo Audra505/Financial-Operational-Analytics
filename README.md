@@ -90,8 +90,6 @@ It enables:
 
 The dashboard supports both high-level monitoring and deeper investigation through detailed views.
 
-## Insights
-
 ---
 
 # Tools & Technologies
@@ -106,3 +104,5 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 # Related Resources
 
 - **Technical Implementation:** Detailed ETL and data modeling documentation
+- **Live Dashboard:** Power BI report
+- **Loom Walkthrough:** Business-focused dashboard and insights walkthrough
