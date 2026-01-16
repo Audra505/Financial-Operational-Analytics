@@ -6,8 +6,8 @@ This document details the **technical design and implementation of the end-to-en
 
 The implementation intentionally mirrors analytics environments by separating data ingestion, cleansing, modeling, and reporting into clearly defined layers.
 
-
-## Architecture Overview
+---
+# Architecture Overview
 
 **End-to-End Flow:**
 
@@ -64,13 +64,14 @@ _Similarity Search node_
 - Neighbor count: 1
 
 **Outcome:**
-•	High-confidence matches replaced with reference values
-•	Low-confidence matches preserved to avoid false positives
+- High-confidence matches replaced with reference values
+- Low-confidence matches preserved to avoid false positives
 
 ## Data Type Normalization
 _String to Date&Time node_
-- Date fields are explicitly converted to proper date/time data types.
-- Prevents casting issues in downstream systems.
+
+- Date fields are explicitly converted to proper date/time data types
+- Prevents casting issues in downstream systems
 - Ensures compatibility with PostgreSQL and BI tools
 
 ## Data Quality Classification
@@ -93,4 +94,22 @@ Parallel branches are used to:
 
 This design supports both operational analytics and data quality monitoring.
 
+## Final Staging Shape
+_Column Filter_ 
+
+Design principle:
+- Only analytics-ready columns are used for the database
+- Intermediate helper fields are removed before persistence
+
+## PostgreSQL Load
+_DB Connector + Writer_
+
+- Data is written using a dedicated ETL database user.
+- Writes are restricted to approved schemas.
+- Deterministic table creation behavior is enforced.
+
+Target Table:
+- staging.transactions_clean
+
+This establishes a clear contract between ETL logic and storage.
 
