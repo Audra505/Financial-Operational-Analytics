@@ -71,6 +71,7 @@ Raw CSV Files
 → PostgreSQL Staging Tables
 → Star Schema (Fact & Dimensions)
 → Power BI Dashboard
+```
 
 Raw data is cleaned and standardized through an ETL process, stored in PostgreSQL, modeled using a star schema for analytical performance, and consumed by Power BI for reporting and storytelling.
 
