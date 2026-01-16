@@ -63,15 +63,15 @@ These characteristics require careful cleaning and validation before analysis.
 
 ## End-to-End Architecture
 
-At a high level, the analytics pipeline follows this flow:
+At a high level, the analytics pipeline follows a layered architecture designed to separate ingestion, transformation, modeling, and reporting:
 
-``
+```text
 Raw CSV Files
 → ETL Cleaning & Validation
 → PostgreSQL Staging Tables
 → Star Schema (Fact & Dimensions)
 → Power BI Dashboard
-``
+
 Raw data is cleaned and standardized through an ETL process, stored in PostgreSQL, modeled using a star schema for analytical performance, and consumed by Power BI for reporting and storytelling.
 
 ---
