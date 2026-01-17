@@ -4,7 +4,7 @@ _End-to-End Financial & Operational Analytics Pipeline_
 # Purpose
 This document details the **technical design and implementation of the end-to-end analytics pipeline,** covering ETL processing, PostgreSQL data modeling, and architectural decisions. It is intended to demonstrate real-world analytics engineering practices, including data quality handling, layered architecture, and BI-ready modeling.
 
-The implementation intentionally **mirrors analytics environments by separating data ingestion, cleansing, modeling, and reporting into clearly defined layers.**
+The implementation mirrors enterprise analytics environments **by enforcing clear separation between ingestion, cleansing, modeling, and reporting layers.**
 
 ---
 # Architecture Overview
@@ -82,7 +82,7 @@ Validation rules include:
 - Negative revenue
 - Invalid unit counts
 
-Rather than dropping data, **records are classified and flagged enabling auditability and downstream QA.**
+Rather than dropping data, **records are classified and flagged, enabling auditability and downstream QA.**
 
 ## Parallel Quality Branches
 _Rule-based filters + GroupBy node_
@@ -111,7 +111,9 @@ _DB Connector + Writer_
 **Target Table:**
 `staging.transactions_clean`
 
-This enforces a **clear separation between data transformation logic(ETL) and database storage responsibilities.**
+This enforces a clear separation between **ETL transformation logic and database storage responsibilities, reducing coupling and improving governance.**
+
+---
 
 # Database & Schema Design
 The PostgreSQL database is structured to simulate a production analytics environment.
@@ -199,4 +201,36 @@ Foreign keys enforce referential integrity and enable consistent analytical join
 **All analytics-facing dimension and fact tables are created in the `mart` schema, serving as the analytics layer.**
 
 **View the Fact and Dimension Table Creation** (here)
+
+# Separation of ETL, Modeling, and Analytics
+A core design principle of this project is the clear separation of concerns across the analytics pipeline:
+
+- **ETL** is responsible for data cleansing, validation, and standardization  
+- **Data modeling** focuses on structuring data for analytical performance and BI consumption  
+- **Analytics and reporting** are handled downstream in Power BI without heavy transformation  
+
+This separation **improves maintainability, scalability, and trust in analytical outputs.**
+
+# Data Quality & Governance
+This project emphasizes trustworthy, auditable analytics through the following principles:
+
+- No silent overwrites of source or cleaned values  
+- All standardization decisions are explicit and traceable  
+- Validation logic is rule-based and explainable  
+- Edge-case and anomalous records are intentionally preserved for analysis
+
+This mirrors governance practices used in regulated enterprise environments.
+
+# Scalability & Production Considerations
+While this project operates on a static dataset, the architecture is designed to support production-scale extensions, including:
+
+- Scheduled pipeline execution (KNIME Server or cron-based orchestration)
+- Incremental data loads to replace full refreshes
+- Partitioning of large fact tables to improve query performance
+- Monitoring of row counts, load failures, and data anomalies
+- Controlled promotion of data from staging to mart layers
+
+## Summary
+This implementation demonstrates an end-to-end analytics pipeline designed with real-world engineering principles in mind. By separating ETL, modeling, and analytics responsibilities, enforcing data quality and governance, and modeling data for BI performance, the solution mirrors production analytics environments and supports scalable, trustworthy decision-making.
+
 
