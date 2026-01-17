@@ -61,7 +61,7 @@ These characteristics require careful cleaning and validation before analysis.
 
 ---
 
-### End-to-End Architecture
+## End-to-End Architecture
 
 At a high level, the analytics **pipeline follows a layered architecture designed to separate ingestion, transformation, modeling, and reporting:**
 
