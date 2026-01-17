@@ -170,7 +170,7 @@ The fact table is populated by:
 
 - Joining staging data to dimension tables
 - Replacing text attributes with surrogate keys
-- Preserving numeric measures unchanged
+- Preserving numeric measures without additional transformation
 
 This ensures consistency, performance, and analytical flexibility.
 
@@ -195,4 +195,8 @@ One row = one transaction
 - `region_id`
 
 Foreign keys enforce referential integrity and enable consistent analytical joins. Degenerate dimensions (e.g., transaction_id) are retained at the fact level where appropriate.
+
+**All analytics-facing dimension and fact tables are created in the `mart` schema, serving as the analytics layer.**
+
+**View the Fact and Dimension Table Creation** (here)
 
