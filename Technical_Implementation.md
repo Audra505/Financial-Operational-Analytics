@@ -130,7 +130,7 @@ A dedicated ETL user is granted schema-scoped permissions, **reinforcing separat
 
 **View the Schema and permissions setup** (here)
 
-## Data Modeling (Star Schema)
+### Data Modeling (Star Schema)
 The modeling phase transforms clean transactional data into an analytics-optimized star schema that supports:
 
 - Efficient querying
@@ -142,7 +142,7 @@ The modeling phase transforms clean transactional data into an analytics-optimiz
 
 No transformations are performed directly on raw CSVs at this stage.
 
-## Star Schema Design
+### Star Schema Design
 A star schema was selected due to:
 
 - Simple, predictable joins
@@ -232,6 +232,14 @@ While this project operates on a static dataset, the architecture is designed to
 - Controlled promotion of data from staging to mart layers
 
 ## Summary
-This implementation demonstrates an end-to-end analytics pipeline designed with real-world engineering principles in mind. By separating ETL, modeling, and analytics responsibilities, enforcing data quality and governance, and modeling data for BI performance, the solution mirrors production analytics environments and supports scalable, trustworthy decision-making.
+This technical implementation demonstrates the ability to design and execute a production-style analytics pipeline from raw data ingestion through BI-ready reporting.
+
+The project shows:
+- Practical handling of imperfect enterprise data
+- Thoughtful pipeline layering to support scalability and governance
+- Dimensional modeling aligned with analytical performance needs
+- Clear alignment between technical decisions and business analytics use cases
+
+The implementation emphasizes engineering discipline, data trust, and decision-oriented design core requirements in real-world analytics environments.
 
 
