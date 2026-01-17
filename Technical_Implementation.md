@@ -145,8 +145,7 @@ No transformations are performed directly on raw CSVs at this stage.
 
 ### Star Schema Design
 ![PostgreSQL Star Schema](images/star_schema_postgresql.png)
-
-*PostgreSQL star schema showing fact and dimension tables used for analytics.*
+ *PostgreSQL star schema showing fact and dimension tables used for analytics.*
 
 A star schema was selected due to:
 
