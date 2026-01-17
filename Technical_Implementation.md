@@ -39,6 +39,7 @@ Raw CSV Files
 
 *KNIME workflow illustrating raw data ingestion, product standardization, data quality validation, and loading into PostgreSQL staging tables.*
 
+
 ### Raw Data Ingestion
 _CSV Reader_
 
@@ -148,6 +149,7 @@ No transformations are performed directly on raw CSVs at this stage.
 ![PostgreSQL Star Schema](images/star_schema_postgresql.png)
 
 *PostgreSQL star schema illustrating the relationship between fact and dimension tables in the analytics layer.*
+
 
 A star schema was selected due to:
 
