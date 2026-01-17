@@ -144,6 +144,18 @@ The modeling phase transforms clean transactional data into an analytics-optimiz
 No transformations are performed directly on raw CSVs at this stage.
 
 ### Star Schema Design
+![PostgreSQL Star Schema](images/star_schema_postgresql.png)
+*PostgreSQL star schema showing fact and dimension tables used for analytics.*
+
+> **Note on Date Handling**
+>
+> The warehouse includes a `mart.dim_date` dimension derived from transactional dates to support consistent joins and filtering.
+>  
+> For advanced time intelligence (YoY, MoM, rolling periods), Power BI uses a dedicated calendar table at the semantic layer.  
+>  
+> This approach mirrors real-world BI implementations where the warehouse provides a clean date dimension, while the BI layer enhances it for analytical flexibility.
+
+
 A star schema was selected due to:
 
 - Simple, predictable joins
