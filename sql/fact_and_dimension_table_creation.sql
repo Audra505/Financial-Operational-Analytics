@@ -176,3 +176,4 @@ SET
         WHEN revenue_amount = 0 OR revenue_amount IS NULL THEN NULL
         ELSE (revenue_amount - cost_amount) / revenue_amount
     END;
+
