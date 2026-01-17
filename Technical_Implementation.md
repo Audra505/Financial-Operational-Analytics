@@ -128,7 +128,7 @@ The PostgreSQL database is structured to simulate a production analytics environ
 
 A dedicated ETL user is granted schema-scoped permissions, **reinforcing separation of duties and security best practices.**
 
-**View the Schema and permissions setup:**[here](sql/schemas_and_permissions_setup.sql)
+**View the Schema and permissions setup:** [here](sql/schemas_and_permissions_setup.sql)
 
 ### Data Modeling (Star Schema)
 The modeling phase transforms clean transactional data into an analytics-optimized star schema that supports:
@@ -201,7 +201,7 @@ Foreign keys enforce referential integrity and enable consistent analytical join
 
 **All analytics-facing dimension and fact tables are created in the `mart` schema, serving as the analytics layer.**
 
-**View the Fact and Dimension Table Creation:**[here](sql/fact_and_dimension_table_creation.sql)
+**View the Fact and Dimension Table Creation:** [here](sql/fact_and_dimension_table_creation.sql)
 
 ## Separation of ETL, Modeling, and Analytics
 A core design principle of this project is the clear separation of concerns across the analytics pipeline:
