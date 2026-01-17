@@ -1,7 +1,7 @@
 # Financial & Operational Analytics
 _End-to-End Analytics Project_
 
-# Project Overview
+## Project Overview
 
 This project simulates an **end-to-end financial and operational analytics workflow** for a large, global organization. It demonstrates how raw, imperfect transactional data can be cleaned, modeled in PostgreSQL using a star schema, and analyzed in Power BI to provide **leadership with visibility into revenue, cost, and margin performance across regions and business units.**
 
@@ -18,7 +18,7 @@ The project demonstrates the ability to:
 
 The organization operates **across multiple countries and internal departments** (e.g., Sales, Legal, Accounting, Engineering, and Operations). It **tracks internal financial activity using transaction-level records rather than consumer sales data.**
 
-## Business Objective
+### Business Objective
 
 Enable leadership-level decision-making by providing visibility into revenue, cost, and margin performance, with a focus on identifying:
 
@@ -26,7 +26,7 @@ Enable leadership-level decision-making by providing visibility into revenue, co
 - Why it changed
 - Where action may be needed
 
-## Key Business Questions Answered
+### Key Business Questions Answered
 
 - How are revenue, cost, and margin performing overall?
 - How is performance changing over time (YoY / MoM)?
@@ -37,7 +37,7 @@ This project translates those leadership questions into a structured analytics s
 
 ---
 
-# Data Overview
+## Data Overview
 
 The dataset represents **transaction-level financial records,** where each row corresponds to a single operational transaction.
 
@@ -61,7 +61,7 @@ These characteristics require careful cleaning and validation before analysis.
 
 ---
 
-## End-to-End Architecture
+### End-to-End Architecture
 
 At a high level, the analytics **pipeline follows a layered architecture designed to separate ingestion, transformation, modeling, and reporting:**
 
@@ -77,7 +77,7 @@ Raw data is cleaned and standardized through an ETL process, stored in PostgreSQ
 
 ---
 
-# Analytics & Reporting Layer
+## Analytics & Reporting Layer
 
 The Power BI dashboard **connects directly to the PostgreSQL star schema** and is designed for executive-level analysis rather than heavy data transformation.
 
@@ -92,7 +92,7 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 
 ---
 
-# Tools & Technologies
+## Tools & Technologies
 
 - **PostgreSQL:** Data storage and dimensional modeling
 - **SQL:** Data transformation and analytical querying
@@ -101,7 +101,7 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 
 ---
 
-# Related Resources
+## Related Resources
 
 - **Technical Implementation:** Detailed ETL and data modeling documentation
 - **Live Dashboard:** Power BI report
