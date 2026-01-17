@@ -108,10 +108,10 @@ _DB Connector + Writer_
 - Write access is restricted to approved schemas.
 - Deterministic table creation behavior is enforced.
 
-Target Table:
+**Target Table:**
 `staging.transactions_clean`
 
-This establishes a **clear contract between ETL logic and storage.**
+This enforces a **clear separation between data transformation logic(ETL) and database storage responsibilities.**
 
 # Database & Schema Design
 The PostgreSQL database is structured to simulate a production analytics environment.
@@ -154,5 +154,45 @@ Each dimension:
 - Uses a surrogate key (`SERIAL`)
 - Contains one row per unique value
 
-Dimensions implemented:
+**Dimensions implemented:**
+
+| Dimension Table | Description | Source Column |
+|-----------|-----------|-------|
+| `mart.dim_date`   | Calendar attributes | `transaction_date` |
+| `mart.dim_business_unit`   | Departments | `business_unit_clean` |
+| `mart.dim_region` | Geographic regions | `region_clean`  |
+| `mart.dim_product`  | Product names | `product_clean`  |
+
+
+
+### Fact Table
+The fact table is populated by:
+
+- Joining staging data to dimension tables
+- Replacing text attributes with surrogate keys
+- Preserving numeric measures unchanged
+
+This ensures consistency, performance, and analytical flexibility.
+
+**Fact Table implemented:** `mart.fact_transactions`
+
+**Grain:**
+One row = one transaction
+
+**Measures:**
+- Units processed
+- Revenue amount
+- Cost amount
+
+**Derived Metrics**
+- Profit
+- Margin
+
+**Foreign keys:**
+- `date_id`
+- `product_id`
+- `business_unit_id`
+- `region_id`
+
+Foreign keys enforce referential integrity and enable consistent analytical joins. Degenerate dimensions (e.g., transaction_id) are retained at the fact level where appropriate.
 
