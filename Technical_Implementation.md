@@ -36,6 +36,7 @@ Raw CSV Files
 
 ## ETL Design & Workflow
 ![KNIME ETL Workflow](images/etl_workflow_knime.png)
+
 *KNIME workflow illustrating raw data ingestion, product standardization, data quality validation, and loading into PostgreSQL staging tables.*
 
 ### Raw Data Ingestion
@@ -145,6 +146,7 @@ No transformations are performed directly on raw CSVs at this stage.
 
 ### Star Schema Design
 ![PostgreSQL Star Schema](images/star_schema_postgresql.png)
+
 *PostgreSQL star schema illustrating the relationship between fact and dimension tables in the analytics layer.*
 
 A star schema was selected due to:
