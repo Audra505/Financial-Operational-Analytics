@@ -1,13 +1,13 @@
 # Technical Implementation
 _End-to-End Financial & Operational Analytics Pipeline_
 
-# Purpose
+## Purpose
 This document details the **technical design and implementation of the end-to-end analytics pipeline,** covering ETL processing, PostgreSQL data modeling, and architectural decisions. It is intended to demonstrate real-world analytics engineering practices, including data quality handling, layered architecture, and BI-ready modeling.
 
 The implementation mirrors enterprise analytics environments **by enforcing clear separation between ingestion, cleansing, modeling, and reporting layers.**
 
 ---
-# Architecture Overview
+## Architecture Overview
 
 **End-to-End Flow:**
 
@@ -34,17 +34,17 @@ Raw CSV Files
 
 ---
 
-# ETL Design & Workflow
+## ETL Design & Workflow
 (image)
 
-## Raw Data Ingestion
+### Raw Data Ingestion
 _CSV Reader_
 
 - Raw transactional data and reference product data are ingested from CSV files
 - No transformations are applied at ingestion
 - Raw values are preserved to support traceability and auditing
 
-## Preprocessing & Field Standardization
+### Preprocessing & Field Standardization
 _Expression node + String Manipulation node_
 
 - Cleaned fields are derived using controlled transformations
@@ -53,7 +53,7 @@ _Expression node + String Manipulation node_
 
 This approach separates **raw ingestion from cleaned representations,** supporting auditability.
 
-## Product Standardization (Fuzzy Matching)
+### Product Standardization (Fuzzy Matching)
 _Similarity Search node_
 
 **Design choice:** Real-world product names contain typos and formatting inconsistencies
@@ -67,14 +67,14 @@ _Similarity Search node_
 - High-confidence matches replaced with reference values
 - Low-confidence matches preserved to avoid false positives
 
-## Data Type Normalization
+### Data Type Normalization
 _String to Date&Time node_
 
 - Date fields are explicitly converted to proper date/time data types
 - Prevents casting issues in downstream systems
 - Ensures compatibility with PostgreSQL and BI tools
 
-## Data Quality Classification
+### Data Quality Classification
 _Rule Engine_
 
 Validation rules include:
@@ -84,7 +84,7 @@ Validation rules include:
 
 Rather than dropping data, **records are classified and flagged, enabling auditability and downstream QA.**
 
-## Parallel Quality Branches
+### Parallel Quality Branches
 _Rule-based filters + GroupBy node_
 
 Parallel branches are used to:
@@ -94,14 +94,14 @@ Parallel branches are used to:
 
 This design supports both **operational analytics and data quality monitoring.**
 
-## Final Staging Shape
+### Final Staging Shape
 _Column Filter_ 
 
 Design principle:
 - Only analytics-ready columns are used for the database
 - Intermediate helper fields are removed before persistence
 
-## PostgreSQL Load
+### PostgreSQL Load
 _DB Connector + Writer_
 
 - Data is written using a dedicated ETL database user.
@@ -115,10 +115,11 @@ This enforces a clear separation between **ETL transformation logic and database
 
 ---
 
-# Database & Schema Design
+## Database & Schema Design
 The PostgreSQL database is structured to simulate a production analytics environment.
 
-## Schema Layers
+### Schema Layers
+
 | Schema | Purpose |
 |--------|--------------|
 | `staging` | Clean transactional (ETL outputs) |
@@ -202,7 +203,7 @@ Foreign keys enforce referential integrity and enable consistent analytical join
 
 **View the Fact and Dimension Table Creation** (here)
 
-# Separation of ETL, Modeling, and Analytics
+## Separation of ETL, Modeling, and Analytics
 A core design principle of this project is the clear separation of concerns across the analytics pipeline:
 
 - **ETL** is responsible for data cleansing, validation, and standardization  
@@ -211,7 +212,7 @@ A core design principle of this project is the clear separation of concerns acro
 
 This separation **improves maintainability, scalability, and trust in analytical outputs.**
 
-# Data Quality & Governance
+## Data Quality & Governance
 This project emphasizes trustworthy, auditable analytics through the following principles:
 
 - No silent overwrites of source or cleaned values  
@@ -221,7 +222,7 @@ This project emphasizes trustworthy, auditable analytics through the following p
 
 This mirrors governance practices used in regulated enterprise environments.
 
-# Scalability & Production Considerations
+## Scalability & Production Considerations
 While this project operates on a static dataset, the architecture is designed to support production-scale extensions, including:
 
 - Scheduled pipeline execution (KNIME Server or cron-based orchestration)
