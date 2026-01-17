@@ -103,6 +103,6 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 
 ## Related Resources
 
-- **Technical Implementation:** Detailed ETL and data modeling documentation
+- **Technical Implementation:** [Detailed ETL and data modeling documentation](Technical_Implementation.md)
 - **Live Dashboard:** Power BI report
 - **Loom Walkthrough:** Business-focused dashboard and insights walkthrough
