@@ -145,7 +145,15 @@ No transformations are performed directly on raw CSVs at this stage.
 
 ### Star Schema Design
 ![PostgreSQL Star Schema](images/star_schema_postgresql.png)
+
 *PostgreSQL star schema showing fact and dimension tables used for analytics.*
+
+A star schema was selected due to:
+
+- Simple, predictable joins
+- BI tool compatibility
+- Read-optimized performance
+- Industry-standard dimensional modeling practices
 
 > **Note on Date Handling**
 >
@@ -154,14 +162,6 @@ No transformations are performed directly on raw CSVs at this stage.
 > For advanced time intelligence (YoY, MoM, rolling periods), Power BI uses a dedicated calendar table at the semantic layer.  
 >  
 > This approach mirrors real-world BI implementations where the warehouse provides a clean date dimension, while the BI layer enhances it for analytical flexibility.
-
-
-A star schema was selected due to:
-
-- Simple, predictable joins
-- BI tool compatibility
-- Read-optimized performance
-- Industry-standard dimensional modeling practices
 
 ### Dimension Tables
 Each dimension:
