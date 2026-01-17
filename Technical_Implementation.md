@@ -36,7 +36,7 @@ Raw CSV Files
 
 ## ETL Design & Workflow
 ![KNIME ETL Workflow](images/etl_workflow_knime.png)
-*Figure: KNIME workflow illustrating raw data ingestion, product standardization, data quality validation, and loading into PostgreSQL staging tables.*
+*KNIME workflow illustrating raw data ingestion, product standardization, data quality validation, and loading into PostgreSQL staging tables.*
 
 ### Raw Data Ingestion
 _CSV Reader_
