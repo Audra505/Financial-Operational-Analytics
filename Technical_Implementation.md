@@ -35,7 +35,8 @@ Raw CSV Files
 ---
 
 ## ETL Design & Workflow
-(image)
+![KNIME ETL Workflow](images/etl_workflow_knime.png)
+*KNIME workflow showing ingestion, validation, product standardization, and PostgreSQL persistence.*
 
 ### Raw Data Ingestion
 _CSV Reader_
