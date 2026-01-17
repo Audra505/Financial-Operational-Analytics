@@ -36,7 +36,7 @@ Raw CSV Files
 
 ## ETL Design & Workflow
 ![KNIME ETL Workflow](images/etl_workflow_knime.png)
-*KNIME workflow showing ingestion, validation, product standardization, and PostgreSQL persistence.*
+*Figure: KNIME workflow illustrating raw data ingestion, product standardization, data quality validation, and loading into PostgreSQL staging tables.*
 
 ### Raw Data Ingestion
 _CSV Reader_
@@ -112,7 +112,7 @@ _DB Connector + Writer_
 **Target Table:**
 `staging.transactions_clean`
 
-This enforces a clear separation between **ETL transformation logic and database storage responsibilities, reducing coupling and improving governance.**
+This enforces a clear separation between ETL transformation logic and database storage responsibilities, **reducing coupling and strengthening data governance.**
 
 ---
 
