@@ -105,4 +105,4 @@ The dashboard supports both high-level monitoring and deeper investigation throu
 
 - **[Technical Implementation](Technical_Implementation.md):** Detailed ETL and data modeling documentation
 - **[Live Dashboard](https://app.powerbi.com/view?r=eyJrIjoiMTQ5OWYyNmEtNDU1NS00OGE5LWJkNjUtY2JlYWI4YTM5YTBiIiwidCI6ImY0ZTI5ODFhLWVlMjctNDhkZi05NDM1LWM0NmJiZDRmMWU3ZCJ9):** Power BI report
-- **[Loom Walkthrough](https://drive.google.com/file/d/1DVfWo7XowdmU_VRCsmv_vgo0LgK6wxq6/view?usp=drive_link):** Business-focused dashboard and insights walkthrough
+- **[Walkthrough Video](https://drive.google.com/file/d/1DVfWo7XowdmU_VRCsmv_vgo0LgK6wxq6/view?usp=drive_link):** Business-focused dashboard and insights walkthrough
